@@ -4,6 +4,7 @@ import controllers.CaixaController;
 import models.Lancamento;
 
 import java.util.InputMismatchException;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class MenuView {
@@ -12,16 +13,17 @@ public class MenuView {
     private Scanner sc = new Scanner(System.in);
 
     public void mostrarMenu() {
-        int opcao;
-        try {
-            do {
-                System.out.println("\n==== SISTEMA DE CAIXA SIMPLES ====");
-                System.out.println("1 - Registrar entrada");
-                System.out.println("2 - Registrar saida");
-                System.out.println("3 - Ver saldo atual");
-                System.out.println("4 - Ver extrato");
-                System.out.println("5 - Sair");
-                System.out.print("Escolha uma opcao: ");
+        int opcao = 0;
+
+        do {
+            System.out.println("\n==== SISTEMA DE CAIXA SIMPLES ====");
+            System.out.println("1 - Registrar entrada");
+            System.out.println("2 - Registrar saida");
+            System.out.println("3 - Ver saldo atual");
+            System.out.println("4 - Ver extrato");
+            System.out.println("5 - Sair");
+            System.out.print("Escolha uma opcao: ");
+            try {
                 opcao = sc.nextInt();
                 sc.nextLine(); // limpar buffer
 
@@ -45,14 +47,23 @@ public class MenuView {
                         System.out.println("Opcao invalida.");
                         break;
                 }
-            } while (opcao != 5);
-        }
-        catch (InputMismatchException e) {
-            System.out.println("Caratere inválido. Digite apenas números!");
-        }
-        finally {
-            sc.close();
-        }
+            } catch (InputMismatchException e) {
+                System.out.println("Caratere inválido. Digite apenas números!");
+                System.out.println();
+
+            } catch (NoSuchElementException e) {
+                System.out.println("\nERRO: " + e.getMessage());
+                System.out.println();
+
+            } catch (IllegalStateException e) {
+                System.out.println("\nERRO: " + e.getMessage());
+                System.out.println();
+
+            }
+
+        } while (opcao != 5);
+
+
     }
 
     private void registrarLancamento(String tipo) {

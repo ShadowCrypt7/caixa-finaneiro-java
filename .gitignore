@@ -1,7 +1,9 @@
 ### IntelliJ IDEA ###
+.idea/
+*.iml
+*.ipr
+*.iws
 out/
-!**/src/main/**/out/
-!**/src/test/**/out/
 
 ### Eclipse ###
 .apt_generated
@@ -12,8 +14,6 @@ out/
 .springBeans
 .sts4-cache
 bin/
-!**/src/main/**/bin/
-!**/src/test/**/bin/
 
 ### NetBeans ###
 /nbproject/private/
@@ -25,5 +25,23 @@ bin/
 ### VS Code ###
 .vscode/
 
-### Mac OS ###
+### Build Artifacts ###
+# Maven
+/target/
+pom.xml.tag
+pom.xml.next
+pom.xml.bak
+release.properties
+release-versions.properties
+
+# Gradle
+.gradle/
+/build/
+
+### Operating System ###
 .DS_Store
+Thumbs.db
+
+### Specific Project Files ###
+Caixa.jar
+sistemacaixa.tar
